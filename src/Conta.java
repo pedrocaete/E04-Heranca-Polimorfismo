@@ -6,15 +6,17 @@ public class Conta {
     private int numero;
     private String agencia;
     private double limite;
+    private Cliente dono;
     private Operacao[] operacoes = new Operacao[1000];
     private int ultima_operacao = 0;
 
-    public Conta(double saldo, int numero, String agencia, double limite) {
+    public Conta(double saldo, int numero, String agencia, double limite, Cliente dono) {
         totalContas++;
         this.saldo = saldo;
         this.numero = numero;
         this.agencia = agencia;
         this.limite = limite;
+        this.dono = dono;
     }
     boolean depositar(double valor) {
         if(valor > 0.0) {
@@ -51,9 +53,12 @@ public class Conta {
     }
 
 
-    void imprimir(){
-        System.out.println("Conta Inválida");
-    }
+        void imprimir() {
+            System.out.println("Número: " + this.getNumero());
+            System.out.println("Dono: " + this.dono.getNome());
+            System.out.println("Saldo: " + this.getSaldo());
+            System.out.println("Limite: " + this.getLimite());
+        }
     void extrato(){
         for(int i = 0; i < this.ultima_operacao; i++) {
             System.out.print(this.operacoes[i].getData() + "  ");
